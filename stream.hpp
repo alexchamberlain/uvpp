@@ -1,8 +1,10 @@
 #pragma once
 
+#include <algorithm>
+#include <cassert>
+
 #include "handle.hpp"
 #include "error.hpp"
-#include <algorithm>
 
 namespace uvpp
 {

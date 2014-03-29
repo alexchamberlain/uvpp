@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 
 namespace uvpp
 {
@@ -15,6 +16,8 @@ namespace uvpp
             uv_cid_shutdown,
             uv_cid_connect,
             uv_cid_connect6,
+            uv_cid_send,
+            uv_cid_recv,
             uv_cid_max
         };
 

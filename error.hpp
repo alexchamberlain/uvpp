@@ -2,6 +2,8 @@
 
 #include <exception>
 #include <string>
+#include <stdexcept>
+
 #include <uv.h>
 
 namespace uvpp

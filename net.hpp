@@ -2,12 +2,8 @@
 
 #include <memory>
 #include <sstream>
-//#include "../src/cs/config.hpp"
 
-
-/// Formatted string, allows to use stream operators and returns a std::string with the resulting format
-#define fs(x) \
-   (static_cast<const std::ostringstream&>(((*std::make_unique<std::ostringstream>().get()) << x)).str ())
+#include "error.hpp"
 
 namespace uvpp
 {
@@ -19,7 +15,12 @@ namespace uvpp
         ip4_addr result;
         int res = 0;
         if ((res = uv_ip4_addr(ip.c_str(), port, &result)) != 0)
-            throw exception(fs("uv_ip4_addr error: " << error(res).str()));
+        {
+            std::ostringstream ss;
+            ss << "uv_ip4_addr error: " << error(res).str();
+            throw exception(ss.str());
+        }
+
         return result;
     }
 
@@ -28,7 +29,12 @@ namespace uvpp
         ip6_addr result;
         int res = 0;
         if ((res = uv_ip6_addr(ip.c_str(), port, &result)) != 0)
-            throw exception(fs("uv_ip6_addr error: " << error(res).str()));
+        {
+            std::ostringstream ss;
+            ss << "uv_ip6_addr error: " << error(res).str();
+            throw exception(ss.str());
+        }
+
         return result;
     }
 
@@ -41,6 +47,7 @@ namespace uvpp
             port = static_cast<int>(ntohs(src->sin_port));
             return true;
         }
+
         return false;
     }
 
